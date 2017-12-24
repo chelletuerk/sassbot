@@ -9,28 +9,27 @@ use Illuminate\Http\Request;
 class SassController extends Controller {
 
     public function createSass(Request $req) {
-        $user = Sass::create($req->all());
-        return response()->json($user);
+        $sass = Sass::create($req->all());
+        return response()->json($sass);
     }
 
     public function updateSass(Request $req, $id) {
-      $user = Sass::find($id);
-      $user-> = $req->input('name');
-      $user-> = $req->input('email');
+      $sass = Sass::find($id);
+      $sass-> = $req->input('sass_comment');
       $car->save();
 
-      return response()->json($user);
+      return response()->json($sass);
     }
 
     public function deleteSass($id) {
-      $user = Sass::find($id);
-      $user->delete();
+      $sass = Sass::find($id);
+      $sass->delete();
 
       return response()->json('Removed successfully.');
     }
 
     public function index() {
-      $users = Sass::all();
-      return response()->json($user);
+      $sasses = Sass::all();
+      return response()->json($sasses);
     }
 }
