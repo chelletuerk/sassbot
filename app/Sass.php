@@ -4,10 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Sass extends Model
 {
     protected $fillable = [
-        'name',
-        'email',
+        'sass_comment',
     ];
 }
