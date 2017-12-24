@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+// use Illuminate\Support\Facades\Hash;
 class UserController extends Controller {
 
 	public function index(){
@@ -12,6 +12,7 @@ class UserController extends Controller {
 	public function store(Request $request){
 		$this->validateRequest($request);
 		$user = User::create([
+          'name' => $request->get('name'),
 					'email' => $request->get('email'),
 				]);
 		return $this->success("The user with with id {$user->id} has been created", 201);
@@ -19,7 +20,7 @@ class UserController extends Controller {
 	public function show($id){
 		$user = User::find($id);
 		if(!$user){
-			return $this->error("The user with {$id} doesn't exist", 404);
+			return $this->error("The user with id #{$id} doesn't exist", 404);
 		}
 		return $this->success($user, 200);
 	}
