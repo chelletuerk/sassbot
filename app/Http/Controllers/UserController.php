@@ -15,7 +15,7 @@ class UserController extends Controller {
           'name' => $request->get('name'),
 					'email' => $request->get('email'),
 				]);
-		return $this->success("The user with with id {$user->id} has been created", 201);
+		return $this->success("The user with with id #{$user->id} has been created", 201);
 	}
 	public function show($id){
 		$user = User::find($id);
@@ -27,20 +27,20 @@ class UserController extends Controller {
 	public function update(Request $request, $id){
 		$user = User::find($id);
 		if(!$user){
-			return $this->error("The user with {$id} doesn't exist", 404);
+			return $this->error("The user with id #{$id} doesn't exist", 404);
 		}
 		$this->validateRequest($request);
 		$user->email 		= $request->get('email');
 		$user->save();
-		return $this->success("The user with with id {$user->id} has been updated", 200);
+		return $this->success("The user with with id #{$user->id} has been updated", 200);
 	}
 	public function destroy($id){
 		$user = User::find($id);
 		if(!$user){
-			return $this->error("The user with {$id} doesn't exist", 404);
+			return $this->error("The user with id #{$id} doesn't exist", 404);
 		}
 		$user->delete();
-		return $this->success("The user with with id {$id} has been deleted", 200);
+		return $this->success("The user with with id #{$id} has been deleted", 200);
 	}
 	public function validateRequest(Request $request){
 		$rules = [
