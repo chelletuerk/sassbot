@@ -14,9 +14,10 @@ class CreateSassTable extends Migration
     public function up()
     {
         Schema::create('sass', function (Blueprint $table) {
-            $table->increments('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->increments('id');
             $table->string('sass_comment');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
