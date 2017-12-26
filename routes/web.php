@@ -14,8 +14,8 @@ $router->delete('/users/{id}','UserController@destroy');
 
 
 $router->get('/sassies','SassController@index');
-// $router->post('/sassies','SassController@store');
+$router->post('/sassies','SassController@store');
 $router->get('/sassies/{user_id}','SassController@show');
-$router->post('/sassies', 'SassController@update');
+$router->post('/sassies/update', 'SassController@update');
 // $router->patch('/sassies/{sass_id}', 'SassController@update');
-// $router->delete('/sassies/{sass_id}', 'SassController@destroy');
+$router->delete('/sassies/{sass_id}', 'SassController@destroy');
