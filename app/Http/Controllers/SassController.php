@@ -25,15 +25,12 @@ class SassController extends Controller {
 		return $this->success($sass, 200);
 	}
 	public function update(Request $request){
-		$sass = Sass::where('id', $request->get('sass_id'))->get();
-		// $sass = $request->get('sass_id');
-		return $this->success($sass, 200);
-		// if(!$sass){
-		// 	return $this->error("The sass with {$id} doesn't exist", 404);
-		// }
 		$this->validateRequest($request);
+		$sass = Sass::find($request->get('sass_id'));
+		if(!$sass){
+			return $this->error("The sass with {$id} doesn't exist", 404);
+		}
 		$sass->sass_comment = $request->get('sass_comment');
-		$sass->user_id = $request->get('user_id');
 		$sass->save();
 		return $this->success("The sass with with id {$sass->id} has been updated", 200);
 	}
