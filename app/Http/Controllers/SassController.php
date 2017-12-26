@@ -39,9 +39,6 @@ class SassController extends Controller {
 		if(!$sass){
 			return $this->error("The sass with {$id} doesn't exist", 404);
 		}
-		// no need to delete the comments for the current sass,
-		// since we used on delete cascase on update cascase.
-		// $sass->comments()->delete();
 		$sass->delete();
 		return $this->success("The sass with with id {$id} has been deleted along with it's comments", 200);
 	}
