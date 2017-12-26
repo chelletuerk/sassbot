@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use App\Sass;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Hash;
+
 class SassController extends Controller {
 
 	public function index(){
@@ -13,25 +13,27 @@ class SassController extends Controller {
 		$this->validateRequest($request);
 		$sass = Sass::create([
 					'sass_comment' => $request->get('sass_comment'),
-					'user_id' => $this->getUserId()
+					'user_id' => $request->get('user_id'),
 				]);
 		return $this->success("The sass with with id {$sass->id} has been created", 201);
 	}
-	public function show($id){
-		$sass = Sass::find($id);
+	public function show($user_id){
+		$sass = Sass::where('user_id', $user_id)->get();
 		if(!$sass){
-			return $this->error("The sass with {$id} doesn't exist", 404);
+		return $this->error("The sass with {$user_id} doesn't exist", 404);
 		}
 		return $this->success($sass, 200);
 	}
-	public function update(Request $request, $id){
-		$sass = Sass::find($id);
-		if(!$sass){
-			return $this->error("The sass with {$id} doesn't exist", 404);
-		}
+	public function update(Request $request){
+		$sass = Sass::where('id', $request->get('sass_id'))->get();
+		// $sass = $request->get('sass_id');
+		return $this->success($sass, 200);
+		// if(!$sass){
+		// 	return $this->error("The sass with {$id} doesn't exist", 404);
+		// }
 		$this->validateRequest($request);
-		$sass->sass_comment 		= $request->get('sass_comment');
-		$sass->user_id 		= $this->getUserId();
+		$sass->sass_comment = $request->get('sass_comment');
+		$sass->user_id = $request->get('user_id');
 		$sass->save();
 		return $this->success("The sass with with id {$sass->id} has been updated", 200);
 	}
