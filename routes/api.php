@@ -1,8 +1,8 @@
 <?php
 
-// $router->get('/', function () use ($router) {
-//     return 'hello world';
-// });
+$router->get('/', function () use ($router) {
+    return 'hello world';
+});
 
 
 $router->get('/api/v1/users','UserController@index');
