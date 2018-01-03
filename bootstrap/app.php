@@ -3,8 +3,8 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 try {
-    //(new Dotenv\Dotenv(__DIR__.'/../'))->load();
-    getenv();
+    (new Dotenv\Dotenv(__DIR__.'/../'))->load();
+    //getenv();
 } catch (Dotenv\Exception\InvalidPathException $e) {
 }
 
